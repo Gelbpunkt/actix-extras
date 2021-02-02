@@ -121,8 +121,8 @@ impl CookieSessionInner {
         let mut jar = CookieJar::new();
 
         match self.security {
-            CookieSecurity::Signed => jar.signed(&self.key).add(cookie),
-            CookieSecurity::Private => jar.private(&self.key).add(cookie),
+            CookieSecurity::Signed => jar.signed_mut(&self.key).add(cookie),
+            CookieSecurity::Private => jar.private_mut(&self.key).add(cookie),
         }
 
         for cookie in jar.delta() {
